@@ -1,0 +1,41 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.guocai.shopping</groupId>
+		<artifactId>it-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>it-manager</artifactId>
+	<packaging>pom</packaging>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.guocai.shopping</groupId>
+			<artifactId>it-common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+	</dependencies>
+
+	<modules>
+		<module>it-manager-pojo</module>
+		<module>it-manager-mapper</module>
+		<module>it-manager-service</module>
+		<module>it-manager-web</module>
+	</modules>
+	<build>
+		<plugins>
+			<!-- 配置Tomcat插件 -->
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<configuration>
+					<port>8080</port>
+					<path>/</path>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
