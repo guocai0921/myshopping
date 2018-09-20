@@ -1,5 +1,6 @@
 package com.guocai.service.impl;
 
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,8 @@ import com.guocai.mapper.TbItemMapper;
 import com.guocai.pojo.TbItem;
 import com.guocai.pojo.TbItemExample;
 import com.guocai.service.TbItemService;
+import com.guocai.taotao.utils.IDUtils;
+import com.guocai.taotao.utils.TaotaoResult;
 
 @Service
 public class TbItemServiceImpl implements TbItemService{
@@ -40,6 +43,20 @@ public class TbItemServiceImpl implements TbItemService{
 		result.setTotal(total);
 		result.setRows(list);
 		return result;
+	}
+
+	@Override
+	public TaotaoResult insertItem(TbItem tbItem) {
+		// TODO Auto-generated method stub
+		// 生成商品ID
+		long itemId = IDUtils.genItemId();
+		// 设置前台没有传过来的数据
+		tbItem.setId(itemId);
+		tbItem.setStatus((byte) 1);
+		tbItem.setCreated(new Date());
+		tbItem.setUpdated(new Date());
+		tbItemMapper.insert(tbItem);
+		return TaotaoResult.ok();
 	}
 	
 }
