@@ -18,6 +18,11 @@ public class TbItemCatController {
 	@Autowired
 	private TbItemCatService tbItemCatService;
 	
+	/**
+	 * 返回商品类目数据
+	 * @param parentId
+	 * @return
+	 */
 	@RequestMapping("/list")
 	@ResponseBody
 	public List<EasyTreeNode> getCatList(@RequestParam(value="id",defaultValue="0")Long parentId){
