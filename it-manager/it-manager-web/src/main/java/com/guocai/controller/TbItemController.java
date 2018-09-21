@@ -32,7 +32,7 @@ public class TbItemController {
 	
 	@RequestMapping(value = "/save",method = RequestMethod.POST)
 	@ResponseBody
-	public TaotaoResult saveItem(TbItem item) {
-		return tbItenService.insertItem(item);
+	public TaotaoResult saveItem(TbItem item,String desc) throws Exception {
+		return tbItenService.insertItem(item,desc);
 	}
 }
