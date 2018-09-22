@@ -7,5 +7,5 @@ import com.guocai.taotao.utils.TaotaoResult;
 public interface TbItemService {
 	TbItem selectByPrimaryKey(Long id);
 	EasyUIDataGridResult getItemList(int page,int rows);
-	TaotaoResult insertItem(TbItem tbItem,String desc) throws Exception;
+	TaotaoResult insertItem(TbItem tbItem,String desc,String itemParams) throws Exception;
 }

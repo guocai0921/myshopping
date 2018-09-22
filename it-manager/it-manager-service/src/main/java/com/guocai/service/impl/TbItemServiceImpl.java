@@ -10,9 +10,11 @@ import com.github.pagehelper.PageInfo;
 import com.guocai.common.pojo.EasyUIDataGridResult;
 import com.guocai.mapper.TbItemDescMapper;
 import com.guocai.mapper.TbItemMapper;
+import com.guocai.mapper.TbItemParamItemMapper;
 import com.guocai.pojo.TbItem;
 import com.guocai.pojo.TbItemDesc;
 import com.guocai.pojo.TbItemExample;
+import com.guocai.pojo.TbItemParamItem;
 import com.guocai.service.TbItemService;
 import com.guocai.taotao.utils.IDUtils;
 import com.guocai.taotao.utils.TaotaoResult;
@@ -25,6 +27,9 @@ public class TbItemServiceImpl implements TbItemService{
 	
 	@Autowired
 	private TbItemDescMapper tbItemDescMapper;
+	
+	@Autowired
+	private TbItemParamItemMapper tbItemParamItemMapper;
 
 	/**
 	 * 根据id查询商品信息
@@ -51,7 +56,7 @@ public class TbItemServiceImpl implements TbItemService{
 	}
 
 	@Override
-	public TaotaoResult insertItem(TbItem tbItem,String desc) throws Exception {
+	public TaotaoResult insertItem(TbItem tbItem,String desc,String itemParams) throws Exception {
 		// TODO Auto-generated method stub
 		// 生成商品ID
 		long itemId = IDUtils.genItemId();
@@ -65,6 +70,11 @@ public class TbItemServiceImpl implements TbItemService{
 		TaotaoResult result = insertItemDesc(itemId,desc);
 		if (result.getStatus() != 200) {
 			throw new Exception("添加商品描述信息失败!");
+		}
+		// 向商品规格和商品的关系表插入数据
+		TaotaoResult results = insertItemParamItem(itemId,itemParams);
+		if (results.getStatus() != 200) {
+			throw new Exception("向商品规格和商品的关系表插入数据失败!");
 		}
 		return TaotaoResult.ok();
 	}
@@ -80,4 +90,15 @@ public class TbItemServiceImpl implements TbItemService{
 		
 	}
 	
+	public TaotaoResult insertItemParamItem(Long itemId,String itemParams) {
+		TbItemParamItem tbItemParamItem = new TbItemParamItem();
+		tbItemParamItem.setId(IDUtils.genItemId());
+		tbItemParamItem.setItemId(itemId);
+		tbItemParamItem.setParamData(itemParams);
+		tbItemParamItem.setCreated(new Date());
+		tbItemParamItem.setUpdated(new Date());
+		tbItemParamItemMapper.insert(tbItemParamItem);
+		return TaotaoResult.ok();
+		
+	}
 }

@@ -8,7 +8,7 @@
 		</td>
 	</tr>
 	<tr class="hide addGroupTr">
-		<td>规格参数:</td>
+		<td></td>
 		<td>
 			<ul>
 				<li><a href="javascript:void(0)" class="easyui-linkbutton addGroup">添加分组</a></li>
@@ -27,10 +27,10 @@
 	<li class="param">
 		<ul>
 			<li>
-				<input class="easyui-textbox" style="width: 150px;" name="group"/>&nbsp;<a href="javascript:void(0)" class="easyui-linkbutton addParam"  title="添加参数" data-options="plain:true,iconCls:'icon-add'"></a>
+				规格参数:<input class="easyui-textbox" style="width: 150px;" name="group"/>&nbsp;<a href="javascript:void(0)" class="easyui-linkbutton addParam"  data-options="plain:true,iconCls:'icon-add'"></a>&nbsp;<a href="javascript:void(0)" class="easyui-linkbutton delParam" title="删除" data-options="plain:true,iconCls:'icon-cancel'"></a>
 			</li>
 			<li>
-				<span>|-------</span><input  style="width: 150px;" class="easyui-textbox" name="param"/>&nbsp;<a href="javascript:void(0)" class="easyui-linkbutton delParam" title="删除" data-options="plain:true,iconCls:'icon-cancel'"></a>						
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>|-------</span><input  style="width: 150px;" class="easyui-textbox" name="param"/>&nbsp;<a href="javascript:void(0)" class="easyui-linkbutton delParam" title="删除" data-options="plain:true,iconCls:'icon-cancel'"></a>						
 			</li>
 		</ul>
 	</li>
@@ -60,6 +60,7 @@
 				  var li = $(".itemParamAddTemplate li").eq(2).clone();
 				  li.find(".delParam").click(function(){
 					  $(this).parent().remove();
+					  $(this).parent().children().remove();
 				  });
 				  li.appendTo($(this).parentsUntil("ul").parent());
 			  });
