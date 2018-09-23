@@ -2,7 +2,10 @@ package com.guocai.mapper;
 
 import com.guocai.pojo.TbItemParamItem;
 import com.guocai.pojo.TbItemParamItemExample;
+
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface TbItemParamItemMapper {
@@ -33,4 +36,7 @@ public interface TbItemParamItemMapper {
     int updateByPrimaryKeyWithBLOBs(TbItemParamItem record);
 
     int updateByPrimaryKey(TbItemParamItem record);
+    
+    TbItemParamItem selectByParam(Map<String, Object> map);
+    
 }

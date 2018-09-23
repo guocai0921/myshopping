@@ -3,6 +3,7 @@ package com.guocai.service.impl;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.guocai.mapper.TbItemParamItemMapper;
@@ -15,6 +16,7 @@ import com.guocai.taotao.utils.JsonUtils;
 @Service
 public class TbItemParamItemServiceImpl implements TbItemParamItemService {
 
+	@Autowired
 	private TbItemParamItemMapper tbItemParamItemMapper;
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -33,7 +35,7 @@ public class TbItemParamItemServiceImpl implements TbItemParamItemService {
 		List<Map> maps = JsonUtils.jsonToList(paramData, Map.class);
 		// 生成html
 		StringBuffer sb = new StringBuffer();
-		sb.append("<table cellpadding=\"0\" cellspacing=\"1\" width=\"100%\" border=\"0\" class=\"Ptable\">\n" );
+		sb.append("<table cellpadding=\"0\" cellspacing=\"1\" width=\"100%\" border=\"1\" class=\"Ptable\">\n" );
 		sb.append("	<tbody>\n" );
 		for(Map m:maps) {
 			sb.append("		<tr>\n" );

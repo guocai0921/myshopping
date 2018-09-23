@@ -36,7 +36,7 @@ public class TbItemParamServiceImpl implements TbItemParamService {
 		Criteria criteria = example.createCriteria();
 		criteria.andItemCatIdEqualTo(cid);
 		List<TbItemParam> list = tbItemParamMapper.selectByExampleWithBLOBs(example);
-		// 判断是否查询到结果
+        // 判断是否查询到结果
 		if (list != null && list.size() > 0) {
 			return TaotaoResult.ok(list.get(0));
 		}
