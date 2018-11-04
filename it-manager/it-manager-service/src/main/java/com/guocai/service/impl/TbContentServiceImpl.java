@@ -16,6 +16,7 @@ import com.guocai.pojo.TbContentExample;
 import com.guocai.pojo.TbContentExample.Criteria;
 import com.guocai.service.TbContentService;
 import com.guocai.taotao.utils.FtpUtil;
+import com.guocai.taotao.utils.HttpClientUtil;
 import com.guocai.taotao.utils.TaotaoResult;
 @Service
 public class TbContentServiceImpl implements TbContentService {
@@ -34,6 +35,12 @@ public class TbContentServiceImpl implements TbContentService {
 	
 	@Value("${FTP_BASE_BATH}")
 	private String FTP_BASE_BATH;
+	
+	@Value("${REST_BASE_URL}")
+	private String REST_BASE_URL;
+	
+	@Value("${REST_CONTENT_SYNC_URL}")
+	private String REST_CONTENT_SYNC_URL;
 
 	@Autowired
 	private TbContentMapper tbContentMapper;
@@ -67,6 +74,12 @@ public class TbContentServiceImpl implements TbContentService {
 		tbContent.setUpdated(new Date());
 		tbContent.setCreated(new Date());
 		tbContentMapper.insert(tbContent);
+		try {
+			HttpClientUtil.doGet(REST_BASE_URL+REST_CONTENT_SYNC_URL+89);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return TaotaoResult.ok();
 	}
 	/**
@@ -90,6 +103,12 @@ public class TbContentServiceImpl implements TbContentService {
 		}
 		tbContent.setUpdated(new Date());
 		tbContentMapper.updateByPrimaryKeyWithBLOBs(tbContent);
+		try {
+			HttpClientUtil.doGet(REST_BASE_URL+REST_CONTENT_SYNC_URL+89);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return TaotaoResult.ok();
 	}
 
@@ -97,6 +116,12 @@ public class TbContentServiceImpl implements TbContentService {
 	public TaotaoResult deleteTbContentById(long id) {
 		// TODO Auto-generated method stub
 		tbContentMapper.deleteByPrimaryKey(id);
+		try {
+			HttpClientUtil.doGet(REST_BASE_URL+REST_CONTENT_SYNC_URL+89);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return TaotaoResult.ok();
 	}
 
