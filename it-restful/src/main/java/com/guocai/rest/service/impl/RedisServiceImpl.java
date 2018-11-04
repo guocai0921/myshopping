@@ -2,12 +2,13 @@ package com.guocai.rest.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 import com.guocai.rest.dao.JedisClient;
 import com.guocai.rest.service.RedisService;
 import com.guocai.taotao.utils.ExceptionUtil;
 import com.guocai.taotao.utils.TaotaoResult;
-
+@Service
 public class RedisServiceImpl implements RedisService {
 
 	@Autowired

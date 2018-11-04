@@ -4,12 +4,15 @@ import java.util.List;
 import org.apache.solr.client.solrj.SolrServer;
 import org.apache.solr.common.SolrInputDocument;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.guocai.search.mapper.ItemMapper;
 import com.guocai.search.pojo.Item;
 import com.guocai.search.service.ItemService;
 import com.guocai.taotao.utils.ExceptionUtil;
 import com.guocai.taotao.utils.TaotaoResult;
 
+@Service
 public class ItemServiceImpl implements ItemService {
 	
 	
@@ -33,7 +36,7 @@ public class ItemServiceImpl implements ItemService {
 				document.setField("item_price", item.getPrice());
 				document.setField("item_image", item.getImage());
 				document.setField("item_category_name", item.getCategoryName());
-				document.setField("item_desc", item.getItem_desc());
+				document.setField("item_desc", item.getItemDesc());
 				// 写入索引库
 				solrServer.add(document);
 			}
